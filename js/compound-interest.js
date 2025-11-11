@@ -50,10 +50,16 @@ function resetCompoundForm() {
     document.getElementById('compoundResults').classList.remove('show');
 }
 
+function getSelectedCurrency() {
+    const select = document.getElementById('currencySelect');
+    return select ? select.value : 'USD';
+}
+
 function formatCurrency(value) {
+    const currency = getSelectedCurrency();
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'USD',
+        currency: currency,
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(value);
