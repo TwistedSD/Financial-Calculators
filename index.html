@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Free Mortgage Calculator - Calculate Monthly Payments & Amortization Schedule</title>
+    <meta name="description" content="Free mortgage calculator to estimate monthly payments, total interest, and amortization schedule. Calculate your home loan payments with taxes, insurance, and HOA fees included.">
+    <meta name="keywords" content="mortgage calculator, home loan calculator, monthly payment calculator, mortgage payment, amortization schedule, home buying calculator, loan calculator">
+    <meta name="author" content="Financial Calculators Pro">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourwebsite.com/index.html">
+    
+    <!-- Open Graph Meta Tags (Social Media Sharing) -->
+    <meta property="og:title" content="Free Mortgage Calculator - Calculate Monthly Payments">
+    <meta property="og:description" content="Calculate your mortgage payments with our free online calculator. Get instant results with detailed amortization schedule.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yourwebsite.com/index.html">
+    <meta property="og:image" content="https://www.yourwebsite.com/images/mortgage-calculator-og.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Mortgage Calculator - Calculate Monthly Payments">
+    <meta name="twitter:description" content="Calculate your mortgage payments with our free online calculator.">
+    <meta name="twitter:image" content="https://www.yourwebsite.com/images/mortgage-calculator-twitter.jpg">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Mortgage Calculator",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "description": "Free mortgage calculator to calculate monthly payments, total interest, and amortization schedule for home loans.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": "Calculate mortgage payments, amortization schedule, total interest paid, payment breakdown",
+        "browserRequirements": "Requires JavaScript"
+    }
+    </script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="site-title">Financial Calculators</h1>
+                <p class="site-tagline">Professional Tools for Smart Financial Planning</p>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">☰ Menu</button>
+            <nav class="main-nav" role="navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html" class="active">Mortgage</a></li>
+                    <li><a href="loan-calculator.html">Loan</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement</a></li>
+                    <li><a href="budget-planner.html">Budget</a></li>
+                    <li><a href="investment-calculator.html">Investment</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Page Title -->
+        <div class="text-center mb-4">
+            <h1>Mortgage Calculator</h1>
+            <p class="text-muted">Calculate your monthly mortgage payments and view detailed amortization schedules</p>
+        </div>
+
+        <!-- Top Ad Space -->
+        <!-- Google AdSense: Top Leaderboard (728x90 or Responsive) -->
+        <div class="ad-container ad-leaderboard">
+            <p>Advertisement</p>
+            <!-- Place AdSense code here -->
+        </div>
+
+        <!-- Main Layout Grid -->
+        <div class="layout-grid">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Calculator Card -->
+                <article class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Calculate Your Mortgage Payment</h2>
+                        <p class="card-subtitle">Enter your loan details to get an instant estimate</p>
+                    </div>
+
+                    <!-- Calculator Form -->
+                    <form id="mortgageForm" class="calculator-form" onsubmit="calculateMortgage(event)">
+                        <!-- Home Price -->
+                        <div class="form-group">
+                            <label for="homePrice" class="form-label">
+                                Home Price
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">The total purchase price of the home you want to buy.</span>
+                                </span>
+                            </label>
+                            <div class="input-with-slider">
+                                <input type="number" id="homePrice" class="form-input" min="0" step="1000" value="300000" required>
+                                <input type="range" id="homePriceSlider" class="form-input" min="50000" max="2000000" step="10000" value="300000">
+                            </div>
+                        </div>
+
+                        <!-- Down Payment -->
+                        <div class="form-group">
+                            <label for="downPayment" class="form-label">
+                                Down Payment
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">The amount you pay upfront. Typically 20% of home price to avoid PMI.</span>
+                                </span>
+                            </label>
+                            <div class="input-group">
+                                <div class="form-group">
+                                    <input type="number" id="downPayment" class="form-input" min="0" step="1000" value="60000" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" id="downPaymentPercent" class="form-input" min="0" max="100" step="0.1" value="20" required>
+                                    <small class="text-muted">Percentage</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Loan Amount (Auto-calculated) -->
+                        <div class="form-group">
+                            <label for="loanAmount" class="form-label">Loan Amount</label>
+                            <input type="number" id="loanAmount" class="form-input" value="240000" readonly>
+                        </div>
+
+                        <!-- Interest Rate -->
+                        <div class="form-group">
+                            <label for="interestRate" class="form-label">
+                                Interest Rate (Annual %)
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">The annual interest rate for your mortgage. Current rates vary by lender and credit score.</span>
+                                </span>
+                            </label>
+                            <div class="input-with-slider">
+                                <input type="number" id="interestRate" class="form-input" min="0" max="20" step="0.01" value="6.5" required>
+                                <input type="range" id="interestRateSlider" class="form-input" min="2" max="15" step="0.1" value="6.5">
+                            </div>
+                        </div>
+
+                        <!-- Loan Term -->
+                        <div class="form-group">
+                            <label for="loanTerm" class="form-label">Loan Term (Years)</label>
+                            <select id="loanTerm" class="form-select" required>
+                                <option value="10">10 years</option>
+                                <option value="15">15 years</option>
+                                <option value="20">20 years</option>
+                                <option value="25">25 years</option>
+                                <option value="30" selected>30 years</option>
+                            </select>
+                        </div>
+
+                        <!-- Property Tax -->
+                        <div class="form-group">
+                            <label for="propertyTax" class="form-label">
+                                Property Tax (Annual)
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">Annual property tax. Typically 0.5% to 2% of home value depending on location.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="propertyTax" class="form-input" min="0" step="100" value="3600" required>
+                        </div>
+
+                        <!-- Home Insurance -->
+                        <div class="form-group">
+                            <label for="homeInsurance" class="form-label">
+                                Home Insurance (Annual)
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">Annual homeowners insurance premium. Average is $1,200-$2,000 per year.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="homeInsurance" class="form-input" min="0" step="100" value="1200" required>
+                        </div>
+
+                        <!-- HOA Fees -->
+                        <div class="form-group">
+                            <label for="hoaFees" class="form-label">
+                                HOA Fees (Monthly)
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">Monthly Homeowners Association fees, if applicable. Enter 0 if none.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="hoaFees" class="form-input" min="0" step="10" value="0" required>
+                        </div>
+
+                        <!-- PMI -->
+                        <div class="form-group">
+                            <label for="pmi" class="form-label">
+                                PMI (Monthly)
+                                <span class="tooltip">?
+                                    <span class="tooltip-text">Private Mortgage Insurance required if down payment is less than 20%. Typically 0.5%-1% of loan amount annually.</span>
+                                </span>
+                            </label>
+                            <input type="number" id="pmi" class="form-input" min="0" step="10" value="0" required>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary btn-block">Calculate Payment</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                        </div>
+                    </form>
+                </article>
+
+                <!-- Ad Space Between Calculator and Results -->
+                <!-- Google AdSense: Medium Rectangle (300x250) -->
+                <div class="ad-container ad-rectangle">
+                    <p>Advertisement</p>
+                    <!-- Place AdSense code here -->
+                </div>
+
+                <!-- Results Section -->
+                <section id="resultsSection" class="results-section" aria-live="polite">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Monthly Payment</h2>
+                        </div>
+
+                        <!-- Key Results Grid -->
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">Monthly Payment</div>
+                                <div class="result-value" id="monthlyPayment">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Payment</div>
+                                <div class="result-value" id="totalPayment">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Interest</div>
+                                <div class="result-value" id="totalInterest">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Loan Amount</div>
+                                <div class="result-value" id="loanAmountResult">$0</div>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Payment Breakdown -->
+                        <h3>Monthly Payment Breakdown</h3>
+                        <ul class="breakdown-list">
+                            <li>
+                                <span>Principal & Interest</span>
+                                <span id="principalInterest">$0</span>
+                            </li>
+                            <li>
+                                <span>Property Tax</span>
+                                <span id="propertyTaxMonthly">$0</span>
+                            </li>
+                            <li>
+                                <span>Home Insurance</span>
+                                <span id="homeInsuranceMonthly">$0</span>
+                            </li>
+                            <li>
+                                <span>HOA Fees</span>
+                                <span id="hoaFeesResult">$0</span>
+                            </li>
+                            <li>
+                                <span>PMI</span>
+                                <span id="pmiResult">$0</span>
+                            </li>
+                            <li>
+                                <span>Total Monthly Payment</span>
+                                <span id="totalMonthlyPayment">$0</span>
+                            </li>
+                        </ul>
+
+                        <!-- Action Buttons -->
+                        <div class="btn-group no-print">
+                            <button class="btn btn-success" onclick="window.print()">🖨️ Print Results</button>
+                            <button class="btn btn-secondary" onclick="shareResults()">📤 Share Results</button>
+                            <button class="btn btn-secondary" onclick="scrollToAmortization()">📊 View Schedule</button>
+                        </div>
+                    </div>
+
+                    <!-- Chart Visualization -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Principal vs Interest Over Time</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="paymentChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Amortization Schedule -->
+                    <div class="card" id="amortizationSection">
+                        <div class="card-header">
+                            <h3 class="card-title">Amortization Schedule</h3>
+                            <p class="card-subtitle">Year-by-year breakdown of your mortgage payments</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table" id="amortizationTable">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Beginning Balance</th>
+                                        <th>Monthly Payment</th>
+                                        <th>Total Paid</th>
+                                        <th>Principal Paid</th>
+                                        <th>Interest Paid</th>
+                                        <th>Ending Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="amortizationBody">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Educational Content Section -->
+                <section class="content-section">
+                    <h2>How to Use This Mortgage Calculator</h2>
+                    <p>Our free mortgage calculator helps you estimate your monthly mortgage payment and understand the total cost of your home loan. Simply enter your home price, down payment, interest rate, and loan term to get instant results. The calculator also factors in property taxes, home insurance, HOA fees, and PMI for a complete picture of your housing costs.</p>
+
+                    <h3>Understanding Your Mortgage Payment</h3>
+                    <p>Your total monthly mortgage payment typically consists of four main components, often referred to as PITI:</p>
+                    <ul>
+                        <li><strong>Principal:</strong> The amount that goes toward paying down your loan balance</li>
+                        <li><strong>Interest:</strong> The cost of borrowing money from the lender</li>
+                        <li><strong>Taxes:</strong> Property taxes collected by your local government</li>
+                        <li><strong>Insurance:</strong> Homeowners insurance to protect your property</li>
+                    </ul>
+                    <p>Additional costs may include HOA fees (if you live in a planned community) and PMI (Private Mortgage Insurance) if your down payment is less than 20% of the home's value.</p>
+
+                    <h3>Key Mortgage Terms Explained</h3>
+                    <ul>
+                        <li><strong>Down Payment:</strong> The upfront cash you pay toward the home purchase. A larger down payment reduces your loan amount and may help you avoid PMI. The standard down payment is 20%, but many loans allow as little as 3-5% down.</li>
+                        <li><strong>Interest Rate:</strong> The percentage charged by the lender for borrowing money. Your rate depends on factors like credit score, loan type, down payment, and current market conditions. Even a small difference in interest rate can significantly impact your total payment.</li>
+                        <li><strong>Loan Term:</strong> The length of time you have to repay the mortgage. Common terms are 30 years and 15 years. Shorter terms have higher monthly payments but lower total interest costs.</li>
+                        <li><strong>Amortization:</strong> The process of paying off your loan through regular payments over time. Early in your loan, most of your payment goes toward interest. Later, more goes toward principal.</li>
+                        <li><strong>PMI (Private Mortgage Insurance):</strong> Insurance that protects the lender if you default on the loan. Required when down payment is less than 20%. Typically costs 0.5% to 1% of the loan amount annually.</li>
+                        <li><strong>APR (Annual Percentage Rate):</strong> The true cost of your mortgage including interest and fees, expressed as a yearly rate. Always compare APRs when shopping for mortgages.</li>
+                    </ul>
+
+                    <h3>Tips for Getting the Best Mortgage</h3>
+                    <ol>
+                        <li><strong>Improve Your Credit Score:</strong> A higher credit score can qualify you for lower interest rates. Pay bills on time, reduce debt, and check your credit report for errors.</li>
+                        <li><strong>Save for a Larger Down Payment:</strong> Putting down 20% or more helps you avoid PMI, reduces your monthly payment, and may qualify you for better rates.</li>
+                        <li><strong>Shop Around:</strong> Compare rates from multiple lenders including banks, credit unions, and online lenders. Rates and fees can vary significantly.</li>
+                        <li><strong>Consider Different Loan Terms:</strong> While a 30-year mortgage has lower monthly payments, a 15-year mortgage saves you tens of thousands in interest over the life of the loan.</li>
+                        <li><strong>Get Pre-Approved:</strong> Mortgage pre-approval shows sellers you're a serious buyer and helps you understand what you can afford.</li>
+                        <li><strong>Factor in All Costs:</strong> Remember that your monthly housing cost includes more than just the mortgage payment. Budget for maintenance, utilities, and potential HOA fees.</li>
+                        <li><strong>Lock Your Rate:</strong> Once you find a favorable rate, consider locking it in to protect against rate increases while you complete your purchase.</li>
+                    </ol>
+
+                    <h3>Understanding the Amortization Schedule</h3>
+                    <p>An amortization schedule shows how each payment is split between principal and interest over the life of your loan. In the early years, most of your payment goes toward interest. As time passes, more goes toward principal. This is why making extra principal payments early in the loan can save you significant interest costs.</p>
+                    <p>Our calculator provides a year-by-year breakdown so you can see exactly how your loan balance decreases over time and how much interest you'll pay each year.</p>
+
+                    <h3>When to Refinance Your Mortgage</h3>
+                    <p>Refinancing might make sense if:</p>
+                    <ul>
+                        <li>Interest rates have dropped significantly since you got your mortgage</li>
+                        <li>Your credit score has improved, qualifying you for better rates</li>
+                        <li>You want to shorten your loan term or change from an adjustable-rate to a fixed-rate mortgage</li>
+                        <li>You want to eliminate PMI after building sufficient equity</li>
+                        <li>You need to tap into your home equity for major expenses</li>
+                    </ul>
+                    <p>Generally, refinancing makes financial sense if you can lower your rate by at least 0.75% to 1% and plan to stay in your home long enough to recoup the closing costs.</p>
+                </section>
+
+                <!-- FAQ Section -->
+                <section class="content-section">
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">How accurate is this mortgage calculator?</h4>
+                        <p class="faq-answer">Our mortgage calculator provides accurate estimates based on the information you enter. However, your actual payment may vary slightly due to factors like exact lender fees, specific tax rates, and insurance costs. Use this calculator as a planning tool, and consult with a mortgage professional for exact figures.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">What's the difference between a 15-year and 30-year mortgage?</h4>
+                        <p class="faq-answer">A 15-year mortgage has higher monthly payments but significantly lower total interest costs. You'll build equity faster and own your home sooner. A 30-year mortgage has lower monthly payments, providing more flexibility in your budget, but you'll pay more interest over time. Choose based on your financial goals and monthly budget.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">How much home can I afford?</h4>
+                        <p class="faq-answer">A general rule is that your monthly housing payment should not exceed 28% of your gross monthly income. However, lenders consider your entire debt-to-income ratio, including car loans, student loans, and credit card debt. Most lenders prefer your total monthly debt payments to be no more than 36% of your gross income.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">Should I pay points to lower my interest rate?</h4>
+                        <p class="faq-answer">Mortgage points (or discount points) allow you to pay upfront to lower your interest rate. One point typically costs 1% of the loan amount and lowers your rate by about 0.25%. Points make sense if you plan to stay in the home long enough to recoup the upfront cost through lower monthly payments, typically 5-7 years.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">What is escrow and how does it work?</h4>
+                        <p class="faq-answer">An escrow account is where your lender collects and holds money for property taxes and homeowners insurance. Each month, a portion of your mortgage payment goes into this account. When your tax and insurance bills are due, the lender pays them on your behalf. This ensures these critical payments are never missed.</p>
+                    </div>
+                </section>
+
+                <!-- Related Calculators -->
+                <section class="content-section">
+                    <h2>Related Financial Calculators</h2>
+                    <div class="related-calculators">
+                        <a href="loan-calculator.html" class="calculator-link">
+                            <div class="calculator-icon">💰</div>
+                            <h3 class="calculator-name">Loan Calculator</h3>
+                            <p class="calculator-description">Calculate payments for personal loans, auto loans, and student loans</p>
+                        </a>
+                        <a href="compound-interest.html" class="calculator-link">
+                            <div class="calculator-icon">📈</div>
+                            <h3 class="calculator-name">Compound Interest</h3>
+                            <p class="calculator-description">See how your savings grow with compound interest over time</p>
+                        </a>
+                        <a href="retirement-calculator.html" class="calculator-link">
+                            <div class="calculator-icon">🏖️</div>
+                            <h3 class="calculator-name">Retirement Calculator</h3>
+                            <p class="calculator-description">Plan your retirement savings and estimate your retirement income</p>
+                        </a>
+                        <a href="budget-planner.html" class="calculator-link">
+                            <div class="calculator-icon">📊</div>
+                            <h3 class="calculator-name">Budget Planner</h3>
+                            <p class="calculator-description">Create a monthly budget and track your income and expenses</p>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Bottom Ad Space -->
+                <!-- Google AdSense: Bottom Leaderboard (728x90 or Responsive) -->
+                <div class="ad-container ad-leaderboard">
+                    <p>Advertisement</p>
+                    <!-- Place AdSense code here -->
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Sidebar Ad -->
+                <!-- Google AdSense: Rectangle (300x250) -->
+                <div class="ad-sidebar">
+                    <div class="ad-container ad-rectangle">
+                        <p>Advertisement</p>
+                        <!-- Place AdSense code here -->
+                    </div>
+                </div>
+
+                <!-- Quick Tips Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Quick Tips</h3>
+                    </div>
+                    <ul>
+                        <li>20% down payment avoids PMI</li>
+                        <li>Compare rates from 3+ lenders</li>
+                        <li>Check your credit score first</li>
+                        <li>Budget for closing costs (2-5%)</li>
+                        <li>Get pre-approved before shopping</li>
+                    </ul>
+                </div>
+
+                <!-- Current Rates Info -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">About Mortgage Rates</h3>
+                    </div>
+                    <p style="font-size: 0.9rem; line-height: 1.6;">Mortgage rates change daily based on economic factors. Your actual rate depends on your credit score, down payment, loan type, and lender. Shop around to find the best rate.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Calculators</h3>
+                <ul>
+                    <li><a href="index.html">Mortgage Calculator</a></li>
+                    <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+                    <li><a href="budget-planner.html">Budget Planner</a></li>
+                    <li><a href="investment-calculator.html">Investment Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Disclaimer</h3>
+                <p style="font-size: 0.85rem; line-height: 1.5;">The calculators and information provided on this website are for educational purposes only. Results are estimates based on the information you provide. Consult with financial professionals for personalized advice.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Financial Calculators Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/mortgage.js"></script>
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.querySelector('.main-nav');
+            nav.classList.toggle('active');
+        }
+
+        // Scroll to amortization section
+        function scrollToAmortization() {
+            document.getElementById('amortizationSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Share results function
+        function shareResults() {
+            const monthlyPayment = document.getElementById('monthlyPayment').textContent;
+            const text = `My estimated monthly mortgage payment is ${monthlyPayment}! Calculate yours: ${window.location.href}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Mortgage Calculation',
+                    text: text,
+                    url: window.location.href
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                // Fallback: Copy to clipboard
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Results copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

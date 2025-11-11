@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>Free Loan Calculator - Calculate Personal & Auto Loan Payments</title>
+    <meta name="description" content="Free loan calculator for personal loans, auto loans, and student loans. Calculate monthly payments, total interest, and payoff schedules instantly.">
+    <meta name="keywords" content="loan calculator, personal loan, auto loan calculator, student loan, monthly payment calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourwebsite.com/loan-calculator.html">
+    
+    <meta property="og:title" content="Free Loan Calculator - Calculate Loan Payments">
+    <meta property="og:description" content="Calculate loan payments for personal, auto, and student loans with our free calculator.">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="site-title">Financial Calculators</h1>
+                <p class="site-tagline">Professional Tools for Smart Financial Planning</p>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu" onclick="toggleMenu()">☰ Menu</button>
+            <nav class="main-nav" role="navigation">
+                <ul>
+                    <li><a href="index.html">Mortgage</a></li>
+                    <li><a href="loan-calculator.html" class="active">Loan</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement</a></li>
+                    <li><a href="budget-planner.html">Budget</a></li>
+                    <li><a href="investment-calculator.html">Investment</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="text-center mb-4">
+            <h1>Loan Calculator</h1>
+            <p class="text-muted">Calculate payments for personal loans, auto loans, and student loans</p>
+        </div>
+
+        <div class="ad-container ad-leaderboard">
+            <p>Advertisement</p>
+        </div>
+
+        <div class="layout-grid">
+            <div class="main-content">
+                <article class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Calculate Your Loan Payment</h2>
+                    </div>
+
+                    <form id="loanForm" onsubmit="calculateLoan(event)">
+                        <div class="form-group">
+                            <label for="loanType" class="form-label">Loan Type</label>
+                            <select id="loanType" class="form-select">
+                                <option value="personal">Personal Loan</option>
+                                <option value="auto">Auto Loan</option>
+                                <option value="student">Student Loan</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loanAmount" class="form-label">Loan Amount</label>
+                            <input type="number" id="loanAmount" class="form-input" min="0" step="100" value="15000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interestRate" class="form-label">Interest Rate (Annual %)</label>
+                            <input type="number" id="interestRate" class="form-input" min="0" max="30" step="0.1" value="7.5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loanTerm" class="form-label">Loan Term (Years)</label>
+                            <input type="number" id="loanTerm" class="form-input" min="1" max="30" value="5" required>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetLoanForm()">Reset</button>
+                        </div>
+                    </form>
+                </article>
+
+                <div class="ad-container ad-rectangle">
+                    <p>Advertisement</p>
+                </div>
+
+                <section id="loanResults" class="results-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Your Loan Results</h2>
+                        </div>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">Monthly Payment</div>
+                                <div class="result-value" id="monthlyPayment">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Paid</div>
+                                <div class="result-value" id="totalPaid">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Interest</div>
+                                <div class="result-value" id="totalInterest">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Loan Amount</div>
+                                <div class="result-value" id="loanAmountResult">$0</div>
+                            </div>
+                        </div>
+                        <div class="btn-group no-print">
+                            <button class="btn btn-success" onclick="window.print()">🖨️ Print</button>
+                            <button class="btn btn-secondary" onclick="shareResults()">📤 Share</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>How to Use the Loan Calculator</h2>
+                    <p>This versatile loan calculator helps you estimate monthly payments for various types of loans including personal loans, auto loans, and student loans. Enter your loan amount, interest rate, and loan term to see your estimated monthly payment and total interest cost.</p>
+
+                    <h3>Understanding Your Loan</h3>
+                    <ul>
+                        <li><strong>Personal Loans:</strong> Unsecured loans typically ranging from $1,000 to $50,000 with rates between 6% and 36%</li>
+                        <li><strong>Auto Loans:</strong> Secured loans for vehicle purchases, typically 3-7 years with rates from 4% to 15%</li>
+                        <li><strong>Student Loans:</strong> Education financing with varying terms and rates depending on federal or private lender</li>
+                    </ul>
+
+                    <h3>Tips for Getting the Best Loan Rate</h3>
+                    <ol>
+                        <li>Check and improve your credit score before applying</li>
+                        <li>Compare rates from multiple lenders</li>
+                        <li>Consider a shorter loan term to save on interest</li>
+                        <li>Make a larger down payment when possible</li>
+                        <li>Look into secured loans for lower rates</li>
+                    </ol>
+                </section>
+
+                <section class="content-section">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <h4 class="faq-question">What's the difference between APR and interest rate?</h4>
+                        <p class="faq-answer">The interest rate is the cost of borrowing the principal loan amount. APR (Annual Percentage Rate) includes the interest rate plus fees and other costs, giving you the true cost of the loan.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">Should I pay off my loan early?</h4>
+                        <p class="faq-answer">Paying off loans early can save you interest, but check for prepayment penalties first. Also consider if investing that money might provide better returns.</p>
+                    </div>
+                </section>
+
+                <div class="ad-container ad-leaderboard">
+                    <p>Advertisement</p>
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="ad-sidebar">
+                    <div class="ad-container ad-rectangle">
+                        <p>Advertisement</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Related Calculators</h3>
+                    <ul>
+                        <li><a href="index.html">Mortgage Calculator</a></li>
+                        <li><a href="compound-interest.html">Compound Interest</a></li>
+                        <li><a href="budget-planner.html">Budget Planner</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Calculators</h3>
+                <ul>
+                    <li><a href="index.html">Mortgage Calculator</a></li>
+                    <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Financial Calculators Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/loan.js"></script>
+    <script>
+        function toggleMenu() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        }
+        function shareResults() {
+            const payment = document.getElementById('monthlyPayment').textContent;
+            if (navigator.share) {
+                navigator.share({ title: 'My Loan Calculation', text: `Monthly payment: ${payment}` });
+            }
+        }
+    </script>
+</body>
+</html>

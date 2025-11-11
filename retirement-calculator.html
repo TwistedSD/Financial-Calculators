@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Calculator - Plan Your Retirement Savings</title>
+    <meta name="description" content="Free retirement calculator to estimate how much you need to save for retirement and whether you're on track.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="site-title">Financial Calculators</h1>
+                <p class="site-tagline">Professional Tools for Smart Financial Planning</p>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Mortgage</a></li>
+                    <li><a href="loan-calculator.html">Loan</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html" class="active">Retirement</a></li>
+                    <li><a href="budget-planner.html">Budget</a></li>
+                    <li><a href="investment-calculator.html">Investment</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="text-center">Retirement Savings Calculator</h1>
+        <p class="text-center text-muted">Plan your retirement and see if you're on track</p>
+
+        <div class="ad-container ad-leaderboard"><p>Advertisement</p></div>
+
+        <div class="layout-grid">
+            <div class="main-content">
+                <article class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Calculate Your Retirement Needs</h2>
+                    </div>
+                    <form id="retirementForm" onsubmit="calculateRetirement(event)">
+                        <div class="form-group">
+                            <label for="currentAge" class="form-label">Current Age</label>
+                            <input type="number" id="currentAge" class="form-input" min="18" max="100" value="35" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="retirementAge" class="form-label">Retirement Age</label>
+                            <input type="number" id="retirementAge" class="form-input" min="50" max="80" value="65" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentSavings" class="form-label">Current Retirement Savings</label>
+                            <input type="number" id="currentSavings" class="form-input" min="0" step="1000" value="50000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyContribution" class="form-label">Monthly Contribution</label>
+                            <input type="number" id="monthlyContribution" class="form-input" min="0" step="50" value="500" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="expectedReturn" class="form-label">Expected Annual Return (%)</label>
+                            <input type="number" id="expectedReturn" class="form-input" min="0" max="20" step="0.1" value="7" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="retirementIncome" class="form-label">Desired Annual Retirement Income</label>
+                            <input type="number" id="retirementIncome" class="form-input" min="0" step="1000" value="60000" required>
+                        </div>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetRetirementForm()">Reset</button>
+                        </div>
+                    </form>
+                </article>
+
+                <section id="retirementResults" class="results-section">
+                    <div class="card">
+                        <h2>Your Retirement Projection</h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">Retirement Savings at Age <span id="retirementAgeResult"></span></div>
+                                <div class="result-value" id="projectedSavings">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Recommended Savings Goal</div>
+                                <div class="result-value" id="savingsGoal">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Contributions</div>
+                                <div class="result-value" id="totalContributions">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">On Track Status</div>
+                                <div class="result-value" id="onTrackStatus">-</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Planning for Retirement</h2>
+                    <p>Retirement planning is crucial for financial security. Most experts recommend saving 10-15% of your income for retirement, starting as early as possible to maximize compound growth.</p>
+                    <h3>Key Retirement Planning Tips</h3>
+                    <ul>
+                        <li>Start saving early - even small amounts compound significantly over time</li>
+                        <li>Take full advantage of employer 401(k) matching</li>
+                        <li>Max out IRA contributions when possible</li>
+                        <li>Diversify your retirement investments</li>
+                        <li>Review and adjust your plan annually</li>
+                        <li>Consider healthcare costs in retirement planning</li>
+                    </ul>
+                    <h3>The 4% Rule</h3>
+                    <p>The 4% rule suggests you can withdraw 4% of your retirement savings annually without running out of money for 30 years. This means you need 25 times your desired annual income saved for retirement.</p>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="ad-sidebar"><div class="ad-container ad-rectangle"><p>Advertisement</p></div></div>
+                <div class="card">
+                    <h3>Did You Know?</h3>
+                    <p>Social Security replaces only about 40% of pre-retirement income for average earners. You'll need personal savings to maintain your lifestyle.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Calculators</h3>
+                <ul>
+                    <li><a href="index.html">Mortgage</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="investment-calculator.html">Investment</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 Financial Calculators Pro. All rights reserved.</p></div>
+    </footer>
+
+    <script src="js/retirement.js"></script>
+    <script>function toggleMenu() { document.querySelector('.main-nav').classList.toggle('active'); }</script>
+</body>
+</html>

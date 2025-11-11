@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner - Monthly Budget Calculator & Tracker</title>
+    <meta name="description" content="Free budget planner to track income, expenses, and savings. Create a balanced monthly budget plan.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="site-title">Financial Calculators</h1>
+                <p class="site-tagline">Professional Tools for Smart Financial Planning</p>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Mortgage</a></li>
+                    <li><a href="loan-calculator.html">Loan</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement</a></li>
+                    <li><a href="budget-planner.html" class="active">Budget</a></li>
+                    <li><a href="investment-calculator.html">Investment</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1 class="text-center">Budget Planner</h1>
+        <p class="text-center text-muted">Create and track your monthly budget</p>
+
+        <div class="ad-container ad-leaderboard"><p>Advertisement</p></div>
+
+        <div class="layout-grid">
+            <div class="main-content">
+                <article class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Monthly Income</h2>
+                    </div>
+                    <form id="budgetForm" onsubmit="calculateBudget(event)">
+                        <div class="form-group">
+                            <label for="monthlyIncome" class="form-label">Monthly Take-Home Income</label>
+                            <input type="number" id="monthlyIncome" class="form-input" min="0" step="100" value="5000" required>
+                        </div>
+                        
+                        <h3>Monthly Expenses</h3>
+                        <div class="form-group">
+                            <label for="housing" class="form-label">Housing (Rent/Mortgage)</label>
+                            <input type="number" id="housing" class="form-input" min="0" step="10" value="1500" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="utilities" class="form-label">Utilities</label>
+                            <input type="number" id="utilities" class="form-input" min="0" step="10" value="200" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="food" class="form-label">Food & Groceries</label>
+                            <input type="number" id="food" class="form-input" min="0" step="10" value="600" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transportation" class="form-label">Transportation</label>
+                            <input type="number" id="transportation" class="form-input" min="0" step="10" value="400" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="insurance" class="form-label">Insurance</label>
+                            <input type="number" id="insurance" class="form-input" min="0" step="10" value="300" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="debt" class="form-label">Debt Payments</label>
+                            <input type="number" id="debt" class="form-input" min="0" step="10" value="500" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="entertainment" class="form-label">Entertainment</label>
+                            <input type="number" id="entertainment" class="form-input" min="0" step="10" value="300" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherExpenses" class="form-label">Other Expenses</label>
+                            <input type="number" id="otherExpenses" class="form-input" min="0" step="10" value="200" required>
+                        </div>
+                        
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary btn-block">Calculate Budget</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetBudgetForm()">Reset</button>
+                        </div>
+                    </form>
+                </article>
+
+                <section id="budgetResults" class="results-section">
+                    <div class="card">
+                        <h2>Your Budget Summary</h2>
+                        <div class="results-grid">
+                            <div class="result-item">
+                                <div class="result-label">Total Income</div>
+                                <div class="result-value" id="totalIncome">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Total Expenses</div>
+                                <div class="result-value" id="totalExpenses">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Remaining</div>
+                                <div class="result-value" id="remaining">$0</div>
+                            </div>
+                            <div class="result-item">
+                                <div class="result-label">Savings Rate</div>
+                                <div class="result-value" id="savingsRate">0%</div>
+                            </div>
+                        </div>
+                        <div id="budgetBreakdown"></div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Creating a Successful Budget</h2>
+                    <p>A budget is a financial plan that helps you track income and expenses, ensuring you live within your means and save for the future.</p>
+                    <h3>The 50/30/20 Budget Rule</h3>
+                    <ul>
+                        <li><strong>50% Needs:</strong> Essential expenses like housing, utilities, food, transportation</li>
+                        <li><strong>30% Wants:</strong> Discretionary spending like entertainment, dining out, hobbies</li>
+                        <li><strong>20% Savings:</strong> Emergency fund, retirement, debt payoff, investments</li>
+                    </ul>
+                    <h3>Budgeting Tips</h3>
+                    <ul>
+                        <li>Track every expense for at least one month</li>
+                        <li>Automate savings and bill payments</li>
+                        <li>Build an emergency fund (3-6 months of expenses)</li>
+                        <li>Review and adjust your budget monthly</li>
+                        <li>Use the envelope method for discretionary spending</li>
+                    </ul>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="ad-sidebar"><div class="ad-container ad-rectangle"><p>Advertisement</p></div></div>
+                <div class="card">
+                    <h3>Budget Tip</h3>
+                    <p>Aim to save at least 20% of your income. If you can't, start with any amount and gradually increase it.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Calculators</h3>
+                <ul>
+                    <li><a href="index.html">Mortgage</a></li>
+                    <li><a href="loan-calculator.html">Loan</a></li>
+                    <li><a href="retirement-calculator.html">Retirement</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 Financial Calculators Pro. All rights reserved.</p></div>
+    </footer>
+
+    <script src="js/budget.js"></script>
+    <script>function toggleMenu() { document.querySelector('.main-nav').classList.toggle('active'); }</script>
+</body>
+</html>

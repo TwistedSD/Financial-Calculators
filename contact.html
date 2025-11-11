@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Financial Calculators</title>
+    <meta name="description" content="Get in touch with Financial Calculators Pro. We'd love to hear your feedback and answer your questions.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1 class="site-title">Financial Calculators</h1>
+                <p class="site-tagline">Professional Tools for Smart Financial Planning</p>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Mortgage</a></li>
+                    <li><a href="loan-calculator.html">Loan</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement</a></li>
+                    <li><a href="budget-planner.html">Budget</a></li>
+                    <li><a href="investment-calculator.html">Investment</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="text-center mb-4">
+            <h1>Contact Us</h1>
+            <p class="text-muted">We'd love to hear from you! Send us your questions, feedback, or suggestions.</p>
+        </div>
+
+        <div class="layout-grid">
+            <div class="main-content">
+                <article class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Send Us a Message</h2>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name *</label>
+                            <input type="text" id="name" class="form-input" required placeholder="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" class="form-input" required placeholder="john@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject *</label>
+                            <select id="subject" class="form-select" required>
+                                <option value="">Select a topic...</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="calculator">Calculator Question</option>
+                                <option value="bug">Report a Bug</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message *</label>
+                            <textarea id="message" class="form-input" rows="6" required placeholder="Tell us what's on your mind..."></textarea>
+                        </div>
+
+                        <div id="formMessage" class="hidden"></div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                            <button type="button" class="btn btn-secondary" onclick="resetContactForm()">Clear Form</button>
+                        </div>
+                    </form>
+                </article>
+
+                <section class="content-section">
+                    <h2>Frequently Asked Questions</h2>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">How long does it take to get a response?</h4>
+                        <p class="faq-answer">We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please indicate this in your subject line.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">Are the calculator results accurate?</h4>
+                        <p class="faq-answer">Our calculators use industry-standard formulas and are regularly tested for accuracy. However, results are estimates based on the information you provide. For official figures, please consult with a financial professional.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">Do you offer financial advice?</h4>
+                        <p class="faq-answer">No, we provide educational calculators and information only. We are not licensed financial advisors. For personalized financial advice, please consult with a qualified professional.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4 class="faq-question">Can I suggest a new calculator?</h4>
+                        <p class="faq-answer">Absolutely! We're always looking to expand our calculator offerings. Use the contact form above with "Feature Request" as the subject to suggest new calculators.</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>Other Ways to Reach Us</h3>
+                    <p><strong>Email:</strong><br>
+                    <a href="mailto:info@financialcalculators.com">info@financialcalculators.com</a></p>
+                    
+                    <p><strong>Support:</strong><br>
+                    <a href="mailto:support@financialcalculators.com">support@financialcalculators.com</a></p>
+                    
+                    <p><strong>Business Hours:</strong><br>
+                    Monday - Friday<br>
+                    9:00 AM - 5:00 PM EST</p>
+                </div>
+
+                <div class="card">
+                    <h3>Before You Contact Us</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.6;">Please check our calculator pages for educational content and FAQs that may answer your question. Each calculator includes detailed explanations and tips.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Report a Technical Issue</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.6;">If you encounter a bug or technical problem, please include:</p>
+                    <ul style="font-size: 0.9rem; margin-left: 1.5rem;">
+                        <li>Which calculator you were using</li>
+                        <li>Your browser and device type</li>
+                        <li>Steps to reproduce the issue</li>
+                        <li>Any error messages you saw</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Calculators</h3>
+                <ul>
+                    <li><a href="index.html">Mortgage Calculator</a></li>
+                    <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                    <li><a href="compound-interest.html">Compound Interest</a></li>
+                    <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Financial Calculators Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.main-nav').classList.toggle('active');
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this to a server
+            // For now, we'll just show a success message
+            
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.className = 'alert alert-success';
+            messageDiv.innerHTML = `
+                <strong>Thank you, ${name}!</strong><br>
+                Your message has been received. We'll get back to you at ${email} within 24-48 hours.
+            `;
+            messageDiv.classList.remove('hidden');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            
+            // Scroll to message
+            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // In production, you would implement actual email sending:
+            // fetch('/api/contact', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ name, email, subject, message })
+            // }).then(response => response.json())
+            //   .then(data => { /* handle response */ });
+        }
+
+        function resetContactForm() {
+            document.getElementById('contactForm').reset();
+            const messageDiv = document.getElementById('formMessage');
+            messageDiv.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
