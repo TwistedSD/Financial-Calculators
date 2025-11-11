@@ -403,10 +403,16 @@ function drawBarChart(ctx, canvas, labels, principalData, interestData) {
 /**
  * Format number as currency
  */
+function getSelectedCurrency() {
+    const select = document.getElementById('currencySelect');
+    return select ? select.value : 'USD';
+}
+
 function formatCurrency(value) {
+    const currency = getSelectedCurrency();
     return new Intl.NumberFormat('en-US', {
         style: 'currency',
-        currency: 'USD',
+        currency: currency,
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(value);
